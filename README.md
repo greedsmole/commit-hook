@@ -33,12 +33,12 @@ This commit hook script automatically prefixes your commit messages with a ticke
 ## Installation
 
 1. **Save the Script**  
-   Place the script in your repository’s `.git/hooks` directory with the filename `commit-msg`.
+   Place the script in your repository’s `.git/hooks` directory with the filename `prepare-commit-msg`.
 
 2. **Make It Executable**  
    Grant execution permissions by running:
    ```bash
-   chmod +x .git/hooks/commit-msg
+   chmod +x .git/hooks/prepare-commit-msg
    ```
 
 ## Customization
