@@ -3,11 +3,14 @@
 # The commit message file
 COMMIT_MSG_FILE=$1
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
-# Regex pattern to match the ticket name (e.g., ABCD-12345)
-TICKET_PATTERN='[A-Z]+-[0-9]+'
-# Extract the ticket name from the branch name
+# Regex pattern to match the ticket name.
+# This pattern optionally matches a prefix ending in a slash, then captures the ticket name (letters can be upper or lowercase)
+TICKET_PATTERN='^(.*\/)?([A-Za-z]+-[0-9]+)'
+# If the branch name matches the pattern, extract the ticket from the second capture group
 if [[ $BRANCH_NAME =~ $TICKET_PATTERN ]]; then
-  TICKET_NAME=${BASH_REMATCH[0]}
+  TICKET_NAME=${BASH_REMATCH[2]}
+  # Convert the ticket name to uppercase
+  TICKET_NAME=$(echo "$TICKET_NAME" | tr '[:lower:]' '[:upper:]')
   # Prepend the ticket name in square brackets to the commit message
   if [ -n "$TICKET_NAME" ]; then
     sed -i.bak -e "1s/^/[$TICKET_NAME] /" $COMMIT_MSG_FILE
