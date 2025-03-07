@@ -1,4 +1,3 @@
-```markdown
 # Commit Hook: Automatic Ticket Prefixer
 
 This commit hook script automatically prefixes your commit messages with a ticket identifier extracted from your current Git branch name. If your branch name follows a specific ticket format (e.g., `feature/ABC-123` or simply `ABC-123`), the script extracts the ticket number and prepends it to your commit message in square brackets.
